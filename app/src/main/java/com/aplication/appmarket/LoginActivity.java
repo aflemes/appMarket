@@ -120,6 +120,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             GoogleSignInAccount acct = result.getSignInAccount();
 
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            intent.putExtra("Nome" ,acct.getDisplayName());
+            intent.putExtra("Email",acct.getEmail());
+
             startActivity(intent);
 
             //Displaying name and email

@@ -3,6 +3,7 @@ package com.aplication.appmarket;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,10 +13,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    String NameUser;
+    String EmailUser;
+    /**/
+    TextView txtNavEmail;
+    TextView txtNavNome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +39,22 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //
+        Bundle extras = getIntent().getExtras();
+
+        if (extras != null){
+            NameUser  = extras.getString("Nome");
+            EmailUser = extras.getString("Email");
+
+            txtNavEmail = (TextView) findViewById(R.id.txtNavEmail);
+            txtNavEmail.setText(EmailUser.toString());
+
+            txtNavNome  = (TextView) findViewById(R.id.txtNavNome);
+            txtNavNome.setText(NameUser.toString());
+        }
+        else
+            Log.d("extras","null");
     }
 
     @Override
