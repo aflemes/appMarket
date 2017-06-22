@@ -119,6 +119,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             //Getting google account
             GoogleSignInAccount acct = result.getSignInAccount();
 
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+
             //Displaying name and email
             /*textViewName.setText(acct.getDisplayName());
             textViewEmail.setText(acct.getEmail());
@@ -162,7 +165,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             // authentication code.
             Log.d(TAG, "Got cached sign-in");
             GoogleSignInResult result = opr.get();
-            handleSignInResult(result);
+            //handleSignInResult(result);
         } else {
             // If the user has not previously signed in on this device or the sign-in has expired,
             // this asynchronous branch will attempt to sign in the user silently.  Cross-device

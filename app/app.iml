@@ -108,6 +108,7 @@
     <orderEntry type="library" exported="" name="design-25.0.1" level="project" />
     <orderEntry type="library" exported="" name="firebase-core-10.0.1" level="project" />
     <orderEntry type="library" exported="" name="play-services-auth-base-10.0.1" level="project" />
+    <orderEntry type="library" exported="" name="constraint-layout-1.0.2" level="project" />
     <orderEntry type="library" exported="" name="play-services-tasks-10.0.1" level="project" />
     <orderEntry type="library" exported="" name="transition-25.0.1" level="project" />
     <orderEntry type="library" exported="" name="play-services-base-10.0.1" level="project" />
@@ -118,6 +119,7 @@
     <orderEntry type="library" exported="" name="firebase-iid-10.0.1" level="project" />
     <orderEntry type="library" exported="" name="support-core-utils-25.0.1" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-25.0.1" level="project" />
+    <orderEntry type="library" exported="" name="constraint-layout-solver-1.0.2" level="project" />
     <orderEntry type="library" exported="" name="firebase-analytics-impl-10.0.1" level="project" />
     <orderEntry type="library" exported="" name="firebase-common-10.0.1" level="project" />
     <orderEntry type="library" exported="" name="support-compat-25.0.1" level="project" />

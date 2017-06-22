@@ -59,6 +59,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "694210629112-0nlbccjb601dtprq07g5f1obd803h9ld.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sourcey.materialloginexample",
+            "certificate_hash": "df156a260f9ef5887d5f14e2b1d97dcba9c50d8f"
+          }
+        },
+        {
+          "client_id": "694210629112-2o540a0091ss0srat6i0n2af2gnggvgl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sourcey.materialloginexample",
+            "certificate_hash": "c6d7a3fa6cd3b43d2361180f5303c19d269cca71"
+          }
+        },
+        {
           "client_id": "694210629112-and7i7l4j5ovnldfv11grt4pk371pset.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
