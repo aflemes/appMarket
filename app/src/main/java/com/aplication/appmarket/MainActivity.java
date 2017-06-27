@@ -1,5 +1,6 @@
 package com.aplication.appmarket;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.support.design.widget.NavigationView;
@@ -25,7 +26,6 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -94,13 +94,21 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+
         if (id == R.id.nav_home) {
             // Handle the camera action
-        } else if (id == R.id.nav_account) {
-
-        } else if (id == R.id.nav_sell) {
-
-        }
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+        } else
+            if (id == R.id.nav_account) {
+                Intent intent = new Intent(getApplicationContext(), AccountActivity.class);
+                startActivity(intent);
+            }
+            else
+                if (id == R.id.nav_sell) {
+                    Intent intent = new Intent(getApplicationContext(), SellActivity.class);
+                    startActivity(intent);
+                }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

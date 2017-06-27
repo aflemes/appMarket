@@ -3,228 +3,39 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\skyli\.android\build-cache\de609250ee02e556f9e4a9bbfb778f272356c006\output\jars\classes.jar"
+        jar="C:\Users\allan.lemes\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
-        sha1="51eba4a4dd73044f90a9d58dd7ca34adbebfcf4e">
-        <dex dex="C:\Users\skyli\StudioProjects\appMarket\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_425b42c388807fba966d3789d74d0da43ddc5281\classes.dex" />
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="C:\Users\allan.lemes\StudioProjects\appMarket-2\app\build\intermediates\transforms\dex\debug\folders\1000\10\constraint-layout-solver-1.0.2_53208c17f5e8a92d7763cacbd68012bf2417c841\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\skyli\.android\build-cache\5407e1eaf9d9c6c42bc09747434fe9b8195bb108\output\jars\classes.jar"
+        jar="C:\Users\allan.lemes\.android\build-cache\ddf76dd82e7171cd21e2f0826093986887ed5277\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
-        sha1="8010ae6ed32828a145b25ec97bc07b7a83c6318f">
-        <dex dex="C:\Users\skyli\StudioProjects\appMarket\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_caa3f9b7d9de7e8672347e1c1153bbe6cf9a3280\classes.dex" />
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="C:\Users\allan.lemes\StudioProjects\appMarket-2\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_50712195718c93c139b4fe1419217f3f5b656abb\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\skyli\.android\build-cache\86e3e8fd42be34d7f283300517dbcef7b5c6f53f\output\jars\classes.jar"
+        jar="C:\Users\allan.lemes\StudioProjects\appMarket-2\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
-        sha1="3b236883e0df6002cabb01ce57d00a5b1e5de610">
-        <dex dex="C:\Users\skyli\StudioProjects\appMarket\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_1ed49044d68be77fccf0bb6c650ded90ede9b568\classes.dex" />
+        sha1="d2a8a5a46ea4bf6a709b08a8b0f72aaf68807152">
+        <dex dex="C:\Users\allan.lemes\StudioProjects\appMarket-2\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_1af4b21ced066a201a8324807a8d41e9d1757839\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\skyli\.android\build-cache\0b1ad06f52ec15ce84968d2858c6fc0cf09ea200\output\jars\libs\internal_impl-25.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
-        <dex dex="C:\Users\skyli\StudioProjects\appMarket\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_d012d2559726995172a37eb00a740210680cf963\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\skyli\.android\build-cache\bf1a87e74be14bb082eff95992f907c90ee80e36\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="c1b6ab157e8e12cb08b9ee82bb5e3c5d22632eb3">
-        <dex dex="C:\Users\skyli\StudioProjects\appMarket\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_786acd961a92d241271c991efc9ea261daf8e443\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\skyli\.gradle\caches\modules-2\files-2.1\com.jakewharton\butterknife\7.0.1\d5d13ea991eab0252e3710e5df3d6a9d4b21d461\butterknife-7.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="d5d13ea991eab0252e3710e5df3d6a9d4b21d461">
-        <dex dex="C:\Users\skyli\StudioProjects\appMarket\app\build\intermediates\transforms\dex\debug\folders\1000\10\butterknife-7.0.1_a58510b7bc56288fca85a08cd17a9c3f604c7c70\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\skyli\.android\build-cache\b3f3ce4c765869a4fda4cb45ccb82762edb916ff\output\jars\libs\internal_impl-25.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="c0bd6ffb002a85b5e7cad29f8558d1cc59539679">
-        <dex dex="C:\Users\skyli\StudioProjects\appMarket\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_4618aed944169a9d277300bcf787e39fff66eca3\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\skyli\StudioProjects\appMarket\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jar="C:\Users\allan.lemes\StudioProjects\appMarket-2\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
         sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
-        <dex dex="C:\Users\skyli\StudioProjects\appMarket\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_ea024e7148314512b54ed3c63012965f78dcf702\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\skyli\.android\build-cache\33c47f84875424da41f1f9fe69a4f8c3230fe610\output\jars\libs\internal_impl-25.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="c5b7145fb34779b6639147b8f2f8dd77c0db771b">
-        <dex dex="C:\Users\skyli\StudioProjects\appMarket\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_7038dd5bc86da79309f57d6b105c36ff655c7ea1\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\skyli\.android\build-cache\68813411cfafa6b3d1808792f433ef5f64209bd0\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="f7ac4b327fdb9e2ee386f5adc46164927658de4b">
-        <dex dex="C:\Users\skyli\StudioProjects\appMarket\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_4dce841cbae32bedf69cdc0641e26b5dd0b0fdb9\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\skyli\.android\build-cache\63e3aac0a37510b27c06b6630c3b67723b072852\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="b24e1c688744078e1fa833ffadf696794761bbe5">
-        <dex dex="C:\Users\skyli\StudioProjects\appMarket\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_5310fab6f160b0fe98b47b4ec8f8012f86f59912\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\skyli\.android\build-cache\3984b5d33a0da880f633027aa10f8cdf01ec2c49\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="772bed2d992b67b9d0327f766cc95cd63031dcd3">
-        <dex dex="C:\Users\skyli\StudioProjects\appMarket\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ce465f22a7fcb50e148f3292919a56ecfeeb76a8\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\skyli\.android\build-cache\201ab9f3b9118ea664838f2c1feedddcc5d1e8b4\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="6a1479afe9f1b3645e1cd9a87318976893472818">
-        <dex dex="C:\Users\skyli\StudioProjects\appMarket\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_d8e3596358d4b41f5d59a267701f10799c1d446a\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\skyli\StudioProjects\appMarket\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="5bfb32123470f37b6e9fc2a63acadc0de1bce762">
-        <dex dex="C:\Users\skyli\StudioProjects\appMarket\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_e9f7c3bbe96a59e47e59b41670a8e8a9d2611508\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\skyli\.android\build-cache\8ee68e64620b50511b86120701f855979fc4c296\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="297d4bcf6ed4e747a1bf7d0d094a2d911a8d3a8e">
-        <dex dex="C:\Users\skyli\StudioProjects\appMarket\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_23beeb410398a69f743fe8888568d6346c3190ed\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\skyli\.android\build-cache\412422798bf5a027610ec74f371ab6d3fa17e8a0\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="C:\Users\skyli\StudioProjects\appMarket\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_a37f932349f631b940bf9ef1f7f02e4e81eed168\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\skyli\.android\build-cache\33c47f84875424da41f1f9fe69a4f8c3230fe610\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="00d4c8eebf2b681073c72a26bd0849549e51c7cb">
-        <dex dex="C:\Users\skyli\StudioProjects\appMarket\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_104762a6f28c765e726f7dc438328cd2020d71a0\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\skyli\.android\build-cache\0b1ad06f52ec15ce84968d2858c6fc0cf09ea200\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="bc7e99e8d0fc279a05aa91378530f467ad62d443">
-        <dex dex="C:\Users\skyli\StudioProjects\appMarket\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_0df11f41f70c13cfb4211979c259d8796e9f5297\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\skyli\.android\build-cache\000eed741ff472670991ad69a8ac4e5ffe1e21ed\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="e2185aff89caeb337b1ffc36d5e525d8318e7cfe">
-        <dex dex="C:\Users\skyli\StudioProjects\appMarket\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_a0a336510f4c79787c1fe7d8d69328fbe672d1a9\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\skyli\.android\build-cache\201ab9f3b9118ea664838f2c1feedddcc5d1e8b4\output\jars\libs\internal_impl-25.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="f83b00041ecfba705603fec40363416c7de69719">
-        <dex dex="C:\Users\skyli\StudioProjects\appMarket\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_d8202d9330866e13deec0f015c1c0f9777ac1de3\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\skyli\.android\build-cache\2b01872b65fe0c3a736b43af7d99ab11d483c02d\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="8f128aeeb7e31271b28a7adb9dac1f3a6ed9f5e7">
-        <dex dex="C:\Users\skyli\StudioProjects\appMarket\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_d0cf1655f4b69e61f69c2df8ea9a9a3417f1df04\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\skyli\.android\build-cache\b3f3ce4c765869a4fda4cb45ccb82762edb916ff\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="26c6eef571592c91f29e56fda0bac73321de0c92">
-        <dex dex="C:\Users\skyli\StudioProjects\appMarket\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ab7b266abd859aa35d9019f9b533003a058b5da5\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\skyli\.android\build-cache\feddfcec1aa834e291871eb3cc750ad68bb9ad85\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="e96c6974cf924e7ee3b230e6847d5731423388c9">
-        <dex dex="C:\Users\skyli\StudioProjects\appMarket\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_7cafb5b01a2bfda5bb04c99e963d8245cbf2690b\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\skyli\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.0.1\support-annotations-25.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="a09194311f8f89c3e6db09d79f50897a889d615e">
-        <dex dex="C:\Users\skyli\StudioProjects\appMarket\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.0.1_5c8251d31e8fdc1c5e7fc35dfda8e9e795e9a034\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\skyli\.android\build-cache\de609250ee02e556f9e4a9bbfb778f272356c006\output\jars\libs\internal_impl-25.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="3af8cc51ef7088e56f132780da8c0bd858b6a6ad">
-        <dex dex="C:\Users\skyli\StudioProjects\appMarket\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_9462aaf7da94931e3e4cf54b1731af2a8d7306ab\classes.dex" />
+        <dex dex="C:\Users\allan.lemes\StudioProjects\appMarket-2\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_535fa00bd697408cb1e25781db9be53f2667aa45\classes.dex" />
     </item>
 
 </items>

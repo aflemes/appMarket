@@ -22,8 +22,12 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.Dark" />
-        <activity android:name=".AccountActivity" />
-        <activity android:name=".SellActivity"></activity>
+        <activity
+            android:name=".AccountActivity"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".SellActivity"
+            android:theme="@style/AppTheme.Dark"/>
     </application>
 
 </manifest>

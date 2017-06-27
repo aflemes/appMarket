@@ -3,7 +3,7 @@ package com.aplication.appmarket;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.sourcey.materialloginexample.R;
+import com.aplication.appmarket.R;
 
 public class SellActivity extends AppCompatActivity {
 
