@@ -27,13 +27,13 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_main);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_main);
         navigationView.setNavigationItemSelectedListener(this);
 
         //
@@ -45,12 +45,6 @@ public class MainActivity extends AppCompatActivity
 
             Log.d(" Nome",NameUser);
             Log.d(" Email",EmailUser);
-
-            /*txtNavEmail = (TextView) findViewById(R.id.txtNavEmail);
-            txtNavEmail.setText("");
-
-            txtNavNome  = (TextView) findViewById(R.id.txtNavNome);
-            txtNavNome.setText("");*/
         }
         else
             Log.d("extras","null");
@@ -58,7 +52,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_main);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -80,10 +74,6 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -95,22 +85,27 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
 
+        Log.d("--","entrei no click do Main");
+
         if (id == R.id.nav_home) {
             // Handle the camera action
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
         } else
             if (id == R.id.nav_account) {
-                Intent intent = new Intent(getApplicationContext(), AccountActivity.class);
+                Intent intent = new Intent(getApplicationContext(), Account2Activity.class);
+                intent.putExtra("Nome" ,NameUser);
+                intent.putExtra("Email",EmailUser);
+
                 startActivity(intent);
             }
             else
                 if (id == R.id.nav_sell) {
-                    Intent intent = new Intent(getApplicationContext(), SellActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), Sell2Activity.class);
                     startActivity(intent);
                 }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_main);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

@@ -23,10 +23,10 @@
             android:name=".MainActivity"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".AccountActivity"
+            android:name=".Sell2Activity"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".SellActivity"
+            android:name=".Account2Activity"
             android:theme="@style/AppTheme.Dark"/>
     </application>
 

@@ -24,4 +24,8 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="txtlblNome">Nome</string>
+    <string name="txtlblEmail">Email</string>
+    <string name="title_activity_sell2">Sell2Activity</string>
+    <string name="title_activity_account2">Account2</string>
 </resources>
