@@ -3,39 +3,21 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\allan.lemes\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
-        <dex dex="C:\Users\allan.lemes\StudioProjects\appMarket-2\app\build\intermediates\transforms\dex\debug\folders\1000\10\constraint-layout-solver-1.0.2_53208c17f5e8a92d7763cacbd68012bf2417c841\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\allan.lemes\.android\build-cache\ddf76dd82e7171cd21e2f0826093986887ed5277\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
-        <dex dex="C:\Users\allan.lemes\StudioProjects\appMarket-2\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_50712195718c93c139b4fe1419217f3f5b656abb\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\allan.lemes\StudioProjects\appMarket-2\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="d2a8a5a46ea4bf6a709b08a8b0f72aaf68807152">
-        <dex dex="C:\Users\allan.lemes\StudioProjects\appMarket-2\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_1af4b21ced066a201a8324807a8d41e9d1757839\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\allan.lemes\StudioProjects\appMarket-2\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jar="C:\Users\UCS\StudioProjects\appMarket-2\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
         sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
-        <dex dex="C:\Users\allan.lemes\StudioProjects\appMarket-2\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_535fa00bd697408cb1e25781db9be53f2667aa45\classes.dex" />
+        <dex dex="C:\Users\UCS\StudioProjects\appMarket-2\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_6f1a5698de577945209e79a8163fd288c60ec61c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\UCS\StudioProjects\appMarket-2\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="1d51fe7b12e0a11590904705198c8a72b269ef92">
+        <dex dex="C:\Users\UCS\StudioProjects\appMarket-2\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_2bb2f665c8cc8eed003a29a206107dd07d5f2a6e\classes.dex" />
     </item>
 
 </items>
