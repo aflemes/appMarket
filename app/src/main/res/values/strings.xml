@@ -28,4 +28,22 @@
     <string name="txtlblEmail">Email</string>
     <string name="title_activity_sell2">Sell2Activity</string>
     <string name="title_activity_account2">Account2</string>
+    <string name="title_activity_shopping">ShoppingActivity</string>
+
+    <string-array name="category">
+        <item>Acessórios para Veículos</item>
+        <item>Animais</item>
+        <item>Antiguidades</item>
+        <item>Brinquedos e Hobbies</item>
+        <item>Calçados, Roupas e Bolsas</item>
+        <item>Celulares e Telefones</item>
+        <item>Câmeras e Acessórios</item>
+        <item>Eletrodomésticos</item>
+        <item>Eletrônicos, Áudio e Vídeo</item>
+        <item>Esportes e Fitness</item>
+        <item>Games</item>
+        <item>Informática</item>
+        <item>Livros</item>
+        <item>Músicas</item>
+    </string-array>
 </resources>

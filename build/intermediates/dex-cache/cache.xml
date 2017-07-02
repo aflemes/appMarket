@@ -3,21 +3,39 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\UCS\StudioProjects\appMarket-2\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jar="C:\Users\skyli\.android\build-cache\80d8dcf88b1974aba71ca10129c595e3c0965bbc\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
-        sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
-        <dex dex="C:\Users\UCS\StudioProjects\appMarket-2\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_6f1a5698de577945209e79a8163fd288c60ec61c\classes.dex" />
+        sha1="dd39827d2067497e60e21da48a7926000b6d4b0c">
+        <dex dex="C:\Users\skyli\StudioProjects\appMarket\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_eea243e30dde7ee405548367d65e16712814e7d2\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\UCS\StudioProjects\appMarket-2\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jar="C:\Users\skyli\StudioProjects\appMarket\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
-        sha1="1d51fe7b12e0a11590904705198c8a72b269ef92">
-        <dex dex="C:\Users\UCS\StudioProjects\appMarket-2\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_2bb2f665c8cc8eed003a29a206107dd07d5f2a6e\classes.dex" />
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="C:\Users\skyli\StudioProjects\appMarket\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_ea024e7148314512b54ed3c63012965f78dcf702\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\skyli\.android\build-cache\9d87880e49674e7f99af97f65b71db0a7eb3a41c\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="09cf6aa1390f95157e8295d02be7868f568825fc">
+        <dex dex="C:\Users\skyli\StudioProjects\appMarket\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ff90eb28bd349ecc1bd328659aca9fc1fbd50940\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\skyli\StudioProjects\appMarket\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="4c744f492bcc32467855e51940b3bacbd9996dd5">
+        <dex dex="C:\Users\skyli\StudioProjects\appMarket\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_e9f7c3bbe96a59e47e59b41670a8e8a9d2611508\classes.dex" />
     </item>
 
 </items>

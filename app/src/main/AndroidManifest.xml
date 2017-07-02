@@ -27,6 +27,9 @@
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".Account2Activity"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".ShoppingActivity"
             android:theme="@style/AppTheme.Dark"/>
     </application>
 

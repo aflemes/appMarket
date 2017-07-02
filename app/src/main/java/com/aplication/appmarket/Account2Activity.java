@@ -1,5 +1,7 @@
 package com.aplication.appmarket;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -18,11 +20,12 @@ import android.widget.EditText;
 public class Account2Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    String NameUser;
-    String EmailUser;
+    private String NameUser;
+    private String EmailUser;
+    private String TokenUser;
 
-    EditText txtNome;
-    EditText txtEmail;
+    private EditText txtNome;
+    private EditText txtEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,21 +42,27 @@ public class Account2Activity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
         //
         Bundle extras = getIntent().getExtras();
 
         if (extras != null) {
             NameUser = extras.getString("Nome");
             EmailUser = extras.getString("Email");
+            TokenUser = extras.getString("Token");
 
             txtNome = (EditText) findViewById(R.id.txtNomeAcount);
-            txtNome.setText(NameUser.toString());
-            txtNome.setKeyListener(null);
 
-            txtEmail = (EditText) findViewById(R.id.txtEmailAccount);
-            txtEmail.setText(EmailUser.toString());
-            txtEmail.setKeyListener(null);
+            if (txtNome != null && NameUser != null) {
+                txtNome.setText(NameUser);
+                txtNome.setKeyListener(null);
+            }
+
+            txtEmail = (EditText) findViewById(R.id.txtEmailAcount);
+
+            if (txtEmail != null && EmailUser != null){
+                txtEmail.setText(EmailUser);
+                txtEmail.setKeyListener(null);
+            }
         }
     }
 
@@ -90,25 +99,70 @@ public class Account2Activity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        Intent intent = null;
 
-        if (id == R.id.nav_home) {
-            // Handle the camera action
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
-        } else
-        if (id == R.id.nav_account) {
-            Intent intent = new Intent(getApplicationContext(), Account2Activity.class);
+        switch (id){
+            case R.id.nav_home:
+                intent = new Intent(getApplicationContext(), MainActivity.class);
+                break;
+            case R.id.nav_account:
+                intent = new Intent(getApplicationContext(), Account2Activity.class);
+                break;
+            case R.id.nav_sell:
+                intent = new Intent(getApplicationContext(), Sell2Activity.class);
+                break;
+            case R.id.nav_compras:
+                intent = new Intent(getApplicationContext(), ShoppingActivity.class);
+                break;
+            case R.id.nav_quit:
+                logoff();
+                return true;
+        }
 
-            startActivity(intent);
-        }
-        else
-        if (id == R.id.nav_sell) {
-            Intent intent = new Intent(getApplicationContext(), Sell2Activity.class);
-            startActivity(intent);
-        }
+        openActivity(intent);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void openActivity(Intent intent){
+        intent.putExtra("Nome" ,NameUser);
+        intent.putExtra("Email",EmailUser);
+        intent.putExtra("Token",TokenUser);
+
+        startActivity(intent);
+    }
+
+    private void logoff(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Confirm");
+        builder.setMessage("Você tem certeza?");
+
+        builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int which) {
+                // Do nothing but close the dialog
+                openLogin();
+            }
+        });
+
+        builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Do nothing
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    private void openLogin(){
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(intent);
     }
 }

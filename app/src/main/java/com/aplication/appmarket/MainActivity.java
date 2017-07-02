@@ -1,5 +1,7 @@
 package com.aplication.appmarket;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,11 +18,12 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    String NameUser;
-    String EmailUser;
+    private String NameUser;
+    private String EmailUser;
+    private String TokenUser;
     /**/
-    TextView txtNavEmail;
-    TextView txtNavNome;
+    private TextView txtNavEmail;
+    private TextView txtNavNome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,12 +45,8 @@ public class MainActivity extends AppCompatActivity
         if (extras != null){
             NameUser  = extras.getString("Nome");
             EmailUser = extras.getString("Email");
-
-            Log.d(" Nome",NameUser);
-            Log.d(" Email",EmailUser);
+            TokenUser = extras.getString("Token");
         }
-        else
-            Log.d("extras","null");
     }
 
     @Override
@@ -83,30 +82,70 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        Intent intent = null;
 
+        switch (id){
+            case R.id.nav_home:
+                intent = new Intent(getApplicationContext(), MainActivity.class);
+                break;
+            case R.id.nav_account:
+                intent = new Intent(getApplicationContext(), Account2Activity.class);
+                break;
+            case R.id.nav_sell:
+                intent = new Intent(getApplicationContext(), Sell2Activity.class);
+                break;
+            case R.id.nav_compras:
+                intent = new Intent(getApplicationContext(), ShoppingActivity.class);
+                break;
+            case R.id.nav_quit:
+                logoff();
+                return true;
+        }
 
-        Log.d("--","entrei no click do Main");
-
-        if (id == R.id.nav_home) {
-            // Handle the camera action
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
-        } else
-            if (id == R.id.nav_account) {
-                Intent intent = new Intent(getApplicationContext(), Account2Activity.class);
-                intent.putExtra("Nome" ,NameUser);
-                intent.putExtra("Email",EmailUser);
-
-                startActivity(intent);
-            }
-            else
-                if (id == R.id.nav_sell) {
-                    Intent intent = new Intent(getApplicationContext(), Sell2Activity.class);
-                    startActivity(intent);
-                }
+        openActivity(intent);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_main);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void openActivity(Intent intent){
+        intent.putExtra("Nome" ,NameUser);
+        intent.putExtra("Email",EmailUser);
+        intent.putExtra("Token",TokenUser);
+
+        startActivity(intent);
+    }
+
+    private void logoff(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Confirm");
+        builder.setMessage("Você tem certeza?");
+
+        builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int which) {
+                // Do nothing but close the dialog
+                openLogin();
+            }
+        });
+
+        builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Do nothing
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    private void openLogin(){
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(intent);
     }
 }

@@ -4,11 +4,15 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@mipmap/ic_home"
+            android:icon="@drawable/ic_home"
             android:title="Início" />
         <item
+            android:id="@+id/nav_compras"
+            android:icon="@drawable/ic_compras"
+            android:title="Compras" />
+        <item
             android:id="@+id/nav_account"
-            android:icon="@mipmap/ic_account"
+            android:icon="@drawable/ic_person"
             android:title="Minha Conta" />
     </group>
 
@@ -16,8 +20,12 @@
         <menu>
             <item
                 android:id="@+id/nav_sell"
-                android:icon="@mipmap/ic_sell"
+                android:icon="@drawable/ic_sell"
                 android:title="Vender" />
+            <item
+                android:id="@+id/nav_quit"
+                android:icon="@drawable/ic_quit"
+                android:title="Sair" />
         </menu>
     </item>
 

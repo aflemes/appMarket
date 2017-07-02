@@ -9,11 +9,6 @@
     tools:openDrawer="start">
 
     <include
-        layout="@layout/content_account2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-    <include
         layout="@layout/app_bar_account"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
@@ -24,6 +19,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
+        android:background="@color/primary"
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/activity_main_drawer" />
 

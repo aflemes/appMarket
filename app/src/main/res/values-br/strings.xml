@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">Mercado</string>
-    <string name="action_settings">Configurações</string>
-    <string name="password">Senha</string>
-    <string name="login">Login</string>
-    <string name="no_account">Crie uma conta no Mercado</string>
-
-</resources>

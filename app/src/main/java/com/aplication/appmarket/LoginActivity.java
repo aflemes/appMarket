@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Config;
 import android.util.Log;
 
 import android.content.Intent;
@@ -24,9 +25,18 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.Map;
 
 import butterknife.ButterKnife;
 import butterknife.Bind;
+import model.User;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
     private static final String TAG = "LoginActivity";
@@ -39,6 +49,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private GoogleApiClient mGoogleApiClient;
     //
     private static final int RC_SIGN_IN = 100;
+    //
+    private boolean userRegistred = false;
+    private String userToken;
 
     @Bind(R.id.input_email) EditText _emailText;
     @Bind(R.id.input_password) EditText _passwordText;
@@ -118,34 +131,74 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (result.isSuccess()) {
             //Getting google account
             GoogleSignInAccount acct = result.getSignInAccount();
-
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            intent.putExtra("Nome" ,acct.getDisplayName());
-            intent.putExtra("Email",acct.getEmail());
-
-            startActivity(intent);
-
-            //Displaying name and email
-            /*textViewName.setText(acct.getDisplayName());
-            textViewEmail.setText(acct.getEmail());
-
-            //Initializing image loader
-            imageLoader = CustomVolleyRequest.getInstance(this.getApplicationContext())
-                    .getImageLoader();
-
-            imageLoader.get(acct.getPhotoUrl().toString(),
-                    ImageLoader.getImageListener(profilePhoto,
-                            R.mipmap.ic_launcher,
-                            R.mipmap.ic_launcher));
-
-            //Loading image
-            profilePhoto.setImageUrl(acct.getPhotoUrl().toString(), imageLoader);*/
+            //espera pelo retorno do firebase em outro metodo
+            searchUsers(acct);
+            //
+            ProgressDialog dialog = ProgressDialog.show(this, "",
+                    "Carregando, por favor aguarde...", true);
 
         } else {
             //If login fails
             Toast.makeText(this, "Login Failed", Toast.LENGTH_LONG).show();
         }
     }
+
+    private void registerUser(GoogleSignInAccount account){
+        String key = FirebaseDatabase.getInstance().getReference("users").push().getKey();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+
+        User usuario = new User();
+
+        usuario.setName(account.getDisplayName());
+        usuario.setEmail(account.getEmail());
+
+        reference.child("users").child(key).setValue(usuario);
+        //abre o mercado
+        openMarket(account);
+    }
+
+    private void searchUsers(final GoogleSignInAccount account){
+        userRegistred = false;
+
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("users");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String email = "";
+                String name  = "";
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    email = (String) child.child("email").getValue();
+                    name  = (String) child.child("name").getValue();
+
+                    if (email.compareTo(account.getEmail().toString()) == 0){
+                        userToken = child.getKey();
+                        userRegistred = true;
+                        openMarket(account);
+                        break;
+                    }
+                }
+
+                if (!userRegistred){
+                    registerUser(account);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void openMarket(GoogleSignInAccount account){
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.putExtra("Nome" , account.getDisplayName());
+        intent.putExtra("Email", account.getEmail());
+        intent.putExtra("Token", userToken.toString());
+
+        startActivity(intent);
+    }
+
     @Override
     public void onClick(View v) {
         if (v == signInButton) {
@@ -166,14 +219,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             // If the user's cached credentials are valid, the OptionalPendingResult will be "done"
             // and the GoogleSignInResult will be available instantly. We can try and retrieve an
             // authentication code.
-            Log.d(TAG, "Got cached sign-in");
-            GoogleSignInResult result = opr.get();
+            //Log.d(TAG, "Got cached sign-in");
+            //GoogleSignInResult result = opr.get();
             //handleSignInResult(result);
         } else {
             // If the user has not previously signed in on this device or the sign-in has expired,
             // this asynchronous branch will attempt to sign in the user silently.  Cross-device
             // single sign-on will occur in this branch.
-            final ProgressDialog progressDialog = new ProgressDialog(this);
+            /*final ProgressDialog progressDialog = new ProgressDialog(this);
             progressDialog.setMessage("Checking sign in state...");
             progressDialog.show();
             opr.setResultCallback(new ResultCallback<GoogleSignInResult>() {
@@ -182,7 +235,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     progressDialog.dismiss();
                     handleSignInResult(googleSignInResult);
                 }
-            });
+            });*/
         }
     }
 

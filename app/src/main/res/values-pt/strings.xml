@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mercado</string>
+    <string name="action_settings">Configurações</string>
+    <string name="password">Senha</string>
+    <string name="login">Login</string>
+    <string name="no_account">Crie uma conta no Mercado</string>
+
+    <string name="choose">Escolher as imagens</string>
+    <string name="upload">Upload</string>
+    <string name="lg_principal">Principal</string>
+    <string name="sell_label">Vender um produto</string>
+
+    <string name="product_label">Título do anúncio</string>
+    <string name="product_descript">Descrição do Produto</string>
+    <string name="product_category">Categoria do Produto</string>
+    <string name="product_qtde">Quantidade</string>
+    <string name="product_price">Preço</string>
+
+    <string name="btn_sell">Vender</string>
+    <string name="btn_cancel">Cancelar</string>
+
+    <string-array name="category">
+        <item>Acessórios para Veículos</item>
+        <item>Animais</item>
+        <item>Antiguidades</item>
+        <item>Brinquedos e Hobbies</item>
+        <item>Calçados, Roupas e Bolsas</item>
+        <item>Celulares e Telefones</item>
+        <item>Câmeras e Acessórios</item>
+        <item>Eletrodomésticos</item>
+        <item>Eletrônicos, Áudio e Vídeo</item>
+        <item>Esportes e Fitness</item>
+        <item>Games</item>
+        <item>Informática</item>
+        <item>Livros</item>
+        <item>Músicas</item>
+    </string-array>
+</resources>
