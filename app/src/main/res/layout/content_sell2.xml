@@ -133,18 +133,19 @@
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:text="@string/product_label"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/txtTitle"
-                    android:layout_weight="1"
-                    android:textColor="@color/black"
-                    android:textSize="18dp"
-                    android:background="@color/base"
-                    android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
-                    android:layout_height="20dp"/>
+                    android:layout_height="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:background="@color/base"
+                    android:hint="Insira o título do anúncio"
+                    android:singleLine="false"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/lblDescription"
@@ -152,20 +153,23 @@
                     android:layout_height="20dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:textStyle="bold"
                     android:text="@string/product_descript"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/txtDescription"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_below="@id/lblDescription"
-                    android:layout_weight="1"
-                    android:textColor="@color/black"
-                    android:textSize="18dp"
                     android:layout_marginTop="5dp"
-                    android:background="@color/base"/>
+                    android:layout_weight="1"
+                    android:background="@color/base"
+                    android:hint="Insira a descrição do anúncio"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    android:textColorLink="@color/black"
+                    android:textSize="18dp" />
 
                 <TextView
                     android:id="@+id/lblCategoria"
@@ -173,16 +177,16 @@
                     android:layout_height="20dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:textStyle="bold"
                     android:text="@string/product_category"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
 
                 <Spinner
                     android:id="@+id/spnCategoria"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textColor="@color/black"
-                    android:background="@color/base"/>
+                    android:background="@color/base"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/lblQtde"
@@ -190,40 +194,44 @@
                     android:layout_height="20dp"
                     android:layout_marginTop="20dp"
                     android:layout_weight="1"
-                    android:textStyle="bold"
                     android:text="@string/product_qtde"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/txtQtde"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_below="@id/lblQtde"
-                    android:layout_weight="1"
-                    android:textColor="@color/black"
-                    android:textSize="18dp"
                     android:layout_marginTop="5dp"
-                    android:background="@color/base"/>
+                    android:layout_weight="1"
+                    android:background="@color/base"
+                    android:hint="Insira a quantidade do anúncio"
+                    android:inputType="number"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
 
                 <TextView
                     android:id="@+id/lblPreco"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:layout_weight="1"
-                    android:textStyle="bold"
                     android:text="@string/product_price"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/txtPrice"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_below="@id/lblPreco"
-                    android:layout_weight="1"
-                    android:textColor="@color/black"
-                    android:textSize="18dp"
                     android:layout_marginTop="5dp"
-                    android:background="@color/base"/>
+                    android:layout_weight="1"
+                    android:background="@color/base"
+                    android:hint="Insira o preço do anúncio"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
 
             </LinearLayout>
 

@@ -1,10 +1,11 @@
 package com.aplication.appmarket;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -13,7 +14,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+
+import model.Product;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -24,6 +37,15 @@ public class MainActivity extends AppCompatActivity
     /**/
     private TextView txtNavEmail;
     private TextView txtNavNome;
+    //
+    public static int [] prgmImages={R.drawable.ic_quit,R.drawable.common_full_open_on_phone};
+    public static String [] prgmNameList={"Let Us C","c++"};
+    private ListView listViewProducts;
+    private Context context;
+    //
+    private ArrayList<Product> product;
+    private ProgressDialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,14 +60,20 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_main);
         navigationView.setNavigationItemSelectedListener(this);
-
         //
+        context=this;
+
+        listViewProducts=(ListView) findViewById(R.id.listViewProducts);
+
         Bundle extras = getIntent().getExtras();
 
         if (extras != null){
             NameUser  = extras.getString("Nome");
             EmailUser = extras.getString("Email");
             TokenUser = extras.getString("Token");
+
+            dialog = ProgressDialog.show(this, "","Carregando, por favor aguarde...", true);
+            loadProducts();
         }
     }
 
@@ -148,4 +176,84 @@ public class MainActivity extends AppCompatActivity
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(intent);
     }
+
+    private void loadProducts(){
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("product");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String sellerToken;
+                int qtdeProduct = 0;
+                int lgPrincipal = 0;
+
+                product = new ArrayList<Product>();
+                Product tmpProduct;
+
+
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    sellerToken = (String) child.child("sellerToken").getValue();
+
+                    tmpProduct = new Product();
+                    tmpProduct.setProductTitle((String) child.child("productTitle").getValue());
+                    tmpProduct.setProductDescript((String) child.child("productDescript").getValue());
+                    tmpProduct.setProductPrice((Double) child.child("productPrice").getValue());
+
+                    try{
+                        qtdeProduct = Integer.parseInt(child.child("productQtde").getValue().toString());
+                        lgPrincipal = Integer.parseInt(child.child("imgPrincipal").getValue().toString());
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
+                    tmpProduct.setProductQtde(qtdeProduct);
+                    tmpProduct.setImgPrincipal(lgPrincipal);
+
+                    tmpProduct.setProductToken((String) child.child("productToken").getValue());
+                    tmpProduct.setProductCategory((String) child.child("productCategory").getValue());
+                    tmpProduct.setSellerToken((String) child.child("sellerToken").getValue());
+
+                    product.add(tmpProduct);
+                }
+
+                if (product != null){
+                    if (product.size() > 0)
+                        loadImages();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void loadImages(){
+        //DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("images");
+        //myRef.addValueEventListener(new ValueEventListener() {
+        /*
+        Glide.with(this)
+                .load("IMAGE URL HERE")
+                .placeholder(R.drawable.placeholder)
+                .error(R.drawable.imagenotfound)
+                .override(200, 200);
+        .centerCrop();
+        .into(imageView);
+        */
+        String [] productTitle  = new String[product.size()];
+        double [] productPrice  = new double[product.size()];
+        int [] productImage     = new int[product.size()];
+
+        for (int i=0 ; i < product.size();i++){
+            productTitle[i] = product.get(i).getProductTitle().toString();
+            productPrice[i] = product.get(i).getProductPrice();
+            productImage[i] = R.drawable.happykoala;
+        }
+
+
+        listViewProducts.setAdapter(new CustomAdapter(this, productTitle,productImage,productPrice));
+
+        dialog.dismiss();
+    }
+
 }

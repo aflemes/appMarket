@@ -46,4 +46,5 @@
         <item>Livros</item>
         <item>Músicas</item>
     </string-array>
+    <string name="title_activity_deal2">Deal2Activity</string>
 </resources>

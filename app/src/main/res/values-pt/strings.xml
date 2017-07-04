@@ -12,13 +12,15 @@
     <string name="sell_label">Vender um produto</string>
 
     <string name="product_label">Título do anúncio</string>
-    <string name="product_descript">Descrição do Produto</string>
-    <string name="product_category">Categoria do Produto</string>
+    <string name="product_descript">Descrição do anúncio</string>
+    <string name="product_category">Categoria do anúncio</string>
     <string name="product_qtde">Quantidade</string>
     <string name="product_price">Preço</string>
 
     <string name="btn_sell">Vender</string>
     <string name="btn_cancel">Cancelar</string>
+
+    <string name="btn_buy">Comprar</string>
 
     <string-array name="category">
         <item>Acessórios para Veículos</item>

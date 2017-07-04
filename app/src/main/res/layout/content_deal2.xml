@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.aplication.appmarket.Deal2Activity"
+    tools:showIn="@layout/app_bar_deal2">
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@color/iron"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:text=" Anúncio pausado "
+        android:id="@+id/txtAnuncioStatus"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@color/iron"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:textSize="15dp"
+        android:layout_below="@+id/txtAnuncioStatus"
+        android:id="@+id/txtTitle"/>
+
+    <LinearLayout
+        android:id="@+id/linearImages"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:layout_below="@+id/txtTitle">
+
+        <ImageView
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:id="@+id/firstImage"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:id="@+id/secondImage"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:id="@+id/thirdImage"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:layout_below="@+id/linearImages">
+
+        <Button
+            android:id="@+id/btnBuy"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/btn_buy" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearPreco"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:layout_below="@+id/linearButtons">
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:text="Preço: R$"
+            android:layout_gravity="right"
+            android:layout_weight="1"
+            android:id="@+id/txtPreco"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:layout_below="@+id/linearPreco">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:text="Quantidade: "
+            android:layout_weight="1"
+            android:id="@+id/txtQtde"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:text="Categoria: "
+            android:layout_weight="1"
+            android:id="@+id/txtCategoria"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:text="Descrição: "
+            android:id="@+id/txtlblDescription"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:id="@+id/txtDescription"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+</RelativeLayout>

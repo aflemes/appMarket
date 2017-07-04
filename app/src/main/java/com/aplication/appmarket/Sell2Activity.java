@@ -106,6 +106,14 @@ public class Sell2Activity extends AppCompatActivity
             }
         });
 
+        btnCancelar     = (Button)    findViewById(R.id.btnCancelar);
+        btnCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Cancelar();
+            }
+        });
+
         FirstimageView  = (ImageView) findViewById(R.id.firstImage);
         SecondimageView = (ImageView) findViewById(R.id.secondImage);
         ThirdimageView  = (ImageView) findViewById(R.id.thirdImage);
@@ -271,9 +279,6 @@ public class Sell2Activity extends AppCompatActivity
                                 //if the upload is successfull
                                 //hiding the progress dialog
                                 progressDialog.dismiss();
-
-                                //and displaying a success toast
-                                Toast.makeText(getApplicationContext(), "File Uploaded ", Toast.LENGTH_LONG).show();
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -282,9 +287,6 @@ public class Sell2Activity extends AppCompatActivity
                                 //if the upload is not successfull
                                 //hiding the progress dialog
                                 progressDialog.dismiss();
-
-                                //and displaying error message
-                                Toast.makeText(getApplicationContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
                             }
                         })
                         .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -292,9 +294,6 @@ public class Sell2Activity extends AppCompatActivity
                             public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                                 //calculating progress percentage
                                 double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-
-                                //displaying percentage in progress dialog
-                                progressDialog.setMessage("Uploaded " + ((int) progress) + "%...");
                             }
                         });
             }
@@ -327,11 +326,23 @@ public class Sell2Activity extends AppCompatActivity
 
         produto.setImgPrincipal(imgPrincipal);
         produto.setProductToken(TokenProduct);
-        produto.setProductTitle(txtTitle.toString());
-        produto.setProductDescript(txtDescription.toString());
+        produto.setProductTitle(txtTitle.getText().toString());
+        produto.setSellerToken(TokenUser);
+        produto.setProductDescript(txtDescription.getText().toString());
         produto.setProductCategory(spnCategory.getSelectedItem().toString());
-        produto.setProductQtde(Integer.parseInt(txtQtde.toString()));
-        produto.setProductPrice(Integer.parseInt(txtPrice.toString()));
+
+        int qtde = 0;
+        double valor = 0;
+        try {
+            qtde = Integer.parseInt(txtQtde.getText().toString());
+            valor = Double.parseDouble(txtPrice.getText().toString());
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+        produto.setProductQtde(qtde);
+        produto.setProductPrice(valor);
 
         reference.child("product").child(TokenProduct).setValue(produto);
         Toast.makeText(this,"Anúncio feito com sucesso",Toast.LENGTH_LONG).show();
@@ -369,6 +380,38 @@ public class Sell2Activity extends AppCompatActivity
 
     private void openLogin(){
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(intent);
+    }
+
+    private void Cancelar(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Confirm");
+        builder.setMessage("Você tem certeza?");
+
+        builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int which) {
+                // Do nothing but close the dialog
+                openMain();
+            }
+        });
+
+        builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Do nothing
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    private void openMain(){
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent);
     }
 }

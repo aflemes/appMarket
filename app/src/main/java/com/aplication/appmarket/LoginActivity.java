@@ -220,8 +220,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             // and the GoogleSignInResult will be available instantly. We can try and retrieve an
             // authentication code.
             //Log.d(TAG, "Got cached sign-in");
-            //GoogleSignInResult result = opr.get();
-            //handleSignInResult(result);
+            GoogleSignInResult result = opr.get();
+            handleSignInResult(result);
         } else {
             // If the user has not previously signed in on this device or the sign-in has expired,
             // this asynchronous branch will attempt to sign in the user silently.  Cross-device
