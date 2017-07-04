@@ -52,6 +52,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     //
     private boolean userRegistred = false;
     private String userToken;
+    private static boolean EnableGoogleCache = false;
 
     @Bind(R.id.input_email) EditText _emailText;
     @Bind(R.id.input_password) EditText _passwordText;
@@ -216,26 +217,26 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(mGoogleApiClient);
         if (opr.isDone()) {
-            // If the user's cached credentials are valid, the OptionalPendingResult will be "done"
-            // and the GoogleSignInResult will be available instantly. We can try and retrieve an
-            // authentication code.
-            //Log.d(TAG, "Got cached sign-in");
-            GoogleSignInResult result = opr.get();
-            handleSignInResult(result);
+            if (EnableGoogleCache) {
+                GoogleSignInResult result = opr.get();
+                handleSignInResult(result);
+            }
         } else {
             // If the user has not previously signed in on this device or the sign-in has expired,
             // this asynchronous branch will attempt to sign in the user silently.  Cross-device
             // single sign-on will occur in this branch.
-            /*final ProgressDialog progressDialog = new ProgressDialog(this);
-            progressDialog.setMessage("Checking sign in state...");
-            progressDialog.show();
-            opr.setResultCallback(new ResultCallback<GoogleSignInResult>() {
-                @Override
-                public void onResult(@NonNull GoogleSignInResult googleSignInResult) {
-                    progressDialog.dismiss();
-                    handleSignInResult(googleSignInResult);
-                }
-            });*/
+            if (EnableGoogleCache) {
+                final ProgressDialog progressDialog = new ProgressDialog(this);
+                progressDialog.setMessage("Checking sign in state...");
+                progressDialog.show();
+                opr.setResultCallback(new ResultCallback<GoogleSignInResult>() {
+                    @Override
+                    public void onResult(@NonNull GoogleSignInResult googleSignInResult) {
+                        progressDialog.dismiss();
+                        handleSignInResult(googleSignInResult);
+                    }
+                });
+            }
         }
     }
 

@@ -23,10 +23,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
 import model.Product;
+import model.Upload;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -43,6 +46,7 @@ public class MainActivity extends AppCompatActivity
     private ListView listViewProducts;
     private Context context;
     //
+    private ArrayList<Upload> uploads;
     private ArrayList<Product> product;
     private ProgressDialog dialog;
 
@@ -217,7 +221,7 @@ public class MainActivity extends AppCompatActivity
 
                 if (product != null){
                     if (product.size() > 0)
-                        loadImages();
+                        loadListView();
                 }
             }
 
@@ -229,17 +233,39 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void loadImages(){
-        //DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("images");
-        //myRef.addValueEventListener(new ValueEventListener() {
-        /*
-        Glide.with(this)
-                .load("IMAGE URL HERE")
-                .placeholder(R.drawable.placeholder)
-                .error(R.drawable.imagenotfound)
-                .override(200, 200);
-        .centerCrop();
-        .into(imageView);
-        */
+        DatabaseReference  myRef = FirebaseDatabase.getInstance().getReference().child("images");
+        uploads = new ArrayList<>();
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //iterating through all the values in database
+                String ProductToken = "";
+
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    ProductToken = postSnapshot.getKey();
+
+                    for (int i = 0; i < product.size(); i++) {
+                        //encontrei o anuncio
+                        if (ProductToken.equals(product.get(i).getProductToken())){
+                            Upload upload = postSnapshot.getValue(Upload.class);
+                            uploads.add(upload);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+    }
+
+    private void loadListView(){
         String [] productTitle  = new String[product.size()];
         double [] productPrice  = new double[product.size()];
         int [] productImage     = new int[product.size()];

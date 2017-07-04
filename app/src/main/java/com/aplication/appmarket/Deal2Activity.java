@@ -64,6 +64,13 @@ public class Deal2Activity extends AppCompatActivity
         txtDescript = (TextView)  findViewById(R.id.txtDescription);
         txtAnuncioStatus = (TextView) findViewById(R.id.txtAnuncioStatus);
         btnBuy      = (Button)    findViewById(R.id.btnBuy);
+        btnBuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                questionaCompra();
+            }
+        });
+
         initActivity();
     }
 
@@ -199,5 +206,35 @@ public class Deal2Activity extends AppCompatActivity
                 txtAnuncioStatus.setVisibility(View.INVISIBLE);
 
         }
+    }
+
+    private void questionaCompra(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Confirm");
+        builder.setMessage("Você tem certeza que deseja comprar este produto?");
+
+        builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int which) {
+                // Do nothing but close the dialog
+                setCompra();
+            }
+        });
+
+        builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Do nothing
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+    private void setCompra(){
+
     }
 }
