@@ -17,23 +17,34 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import model.Product;
+import model.Upload;
 
 public class CustomAdapter extends BaseAdapter{
     String [] title;
     double [] price;
-    int [] imageIco;
 
+    private List<Upload> uploads;
     private Context context;
+    private int[] imageIco;
     private static LayoutInflater inflater=null;
+    private ArrayList<Product> product;
 
-    public CustomAdapter(MainActivity mainActivity, String[] title, int[] imageIco, double[] price) {
+    public CustomAdapter(Context context, String[] title, int[] imageIco, double[] price, ArrayList<Product> product) {
         // TODO Auto-generated constructor stub
-        this.title    = title;
-        this.imageIco = imageIco;
-        this.price    = price;
+        this.title     = title;
+        this.imageIco  = imageIco;
+        this.price     = price;
+        this.product   = product;
 
-        context  = mainActivity;
+        this.context  = context;
         inflater = ( LayoutInflater )context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
     @Override
@@ -65,6 +76,7 @@ public class CustomAdapter extends BaseAdapter{
         // TODO Auto-generated method stub
         Holder holder=new Holder();
         View rowView;
+
         rowView = inflater.inflate(R.layout.custom_listview, null);
         holder.txtTitle = (TextView)  rowView.findViewById(R.id.listview_item_title);
         holder.imageIco = (ImageView) rowView.findViewById(R.id.listview_image);
@@ -72,6 +84,7 @@ public class CustomAdapter extends BaseAdapter{
 
         holder.txtTitle.setText(title[position]);
         holder.imageIco.setImageResource(imageIco[position]);
+        //Glide.with(context).load(upload.getUrl()).into(holder.imageIco);
         holder.txtPrice.setText("R$ " + String.valueOf(price[position]));
 
         rowView.setOnClickListener(new OnClickListener() {
@@ -80,7 +93,12 @@ public class CustomAdapter extends BaseAdapter{
                 Intent intent = new Intent(context,Deal2Activity.class);
                 intent.putExtra("ProductTitle",title[position]);
                 intent.putExtra("ProductPrice",String.valueOf(price[position]));
-                intent.putExtra("ProductPaused","1");
+                intent.putExtra("ProductQtde",String.valueOf(product.get(position).getProductQtde()));
+
+                intent.putExtra("ProductCategory",String.valueOf(product.get(position).getProductCategory()));
+                intent.putExtra("ProductDescript",String.valueOf(product.get(position).getProductDescript()));
+                intent.putExtra("ProductToken"   ,String.valueOf(product.get(position).getProductToken()));
+                intent.putExtra("ProductStatus"  ,String.valueOf(product.get(position).getProductStatus()));
 
                 context.startActivity(intent);
             }

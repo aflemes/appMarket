@@ -1,6 +1,7 @@
 package com.aplication.appmarket;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +16,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+
+import model.Product;
 
 public class ShoppingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -22,6 +34,10 @@ public class ShoppingActivity extends AppCompatActivity
     private String NameUser;
     private String EmailUser;
     private String TokenUser;
+    //
+    private ArrayList<Product> product;
+    private ProgressDialog dialog;
+    private ListView listViewProducts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +55,7 @@ public class ShoppingActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        listViewProducts=(ListView) findViewById(R.id.listViewProducts);
         //
         Bundle extras = getIntent().getExtras();
 
@@ -47,6 +64,9 @@ public class ShoppingActivity extends AppCompatActivity
             EmailUser = extras.getString("Email");
             TokenUser = extras.getString("Token");
         }
+
+        dialog = ProgressDialog.show(this, "","Carregando, por favor aguarde...", true);
+        loadCompras();
     }
 
     @Override
@@ -147,5 +167,101 @@ public class ShoppingActivity extends AppCompatActivity
     private void openLogin(){
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(intent);
+    }
+
+    private void loadCompras(){
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("product");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String sellerToken;
+                String productBuyer;
+                int qtdeProduct = 0;
+                int lgPrincipal = 0;
+                int inStatus    = 0;
+                double price    = 0.0;
+
+                product = new ArrayList<Product>();
+                Product tmpProduct;
+
+
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    sellerToken  = (String) child.child("sellerToken").getValue();
+                    productBuyer = (String) child.child("productBuyer").getValue();
+
+                    //se nao tem comprador nao lista
+                    if (!(productBuyer == null)) {
+                        if (productBuyer.compareTo(EmailUser) == 0) {
+                            tmpProduct = new Product();
+                            tmpProduct.setProductTitle((String) child.child("productTitle").getValue());
+                            tmpProduct.setProductDescript((String) child.child("productDescript").getValue());
+
+                            try {
+                                price = Double.parseDouble(child.child("productPrice").getValue().toString());
+                                qtdeProduct = Integer.parseInt(child.child("productQtde").getValue().toString());
+                                lgPrincipal = Integer.parseInt(child.child("imgPrincipal").getValue().toString());
+                                inStatus = Integer.parseInt(child.child("productStatus").getValue().toString());
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+                            tmpProduct.setProductPrice(price);
+                            tmpProduct.setProductQtde(qtdeProduct);
+                            tmpProduct.setImgPrincipal(lgPrincipal);
+                            tmpProduct.setProductStatus(inStatus);
+
+                            tmpProduct.setProductToken((String) child.child("productToken").getValue());
+                            tmpProduct.setProductCategory((String) child.child("productCategory").getValue());
+                            tmpProduct.setSellerToken((String) child.child("sellerToken").getValue());
+
+                            product.add(tmpProduct);
+                        }
+                    }
+                }
+
+                if (product != null){
+                    if (product.size() > 0)
+                        loadListView();
+                }
+                else
+                    dialog.dismiss();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void loadListView(){
+        String [] productTitle  = new String[product.size()];
+        double [] productPrice  = new double[product.size()];
+        int [] productImage     = new int[product.size()];
+
+        for (int i=0 ; i < product.size();i++){
+            productTitle[i] = product.get(i).getProductTitle().toString();
+            productPrice[i] = product.get(i).getProductPrice();
+
+            switch (i){
+                case 0:
+                    productImage[i] = R.drawable.happykoala;
+                    break;
+                case 1:
+                    productImage[i] = R.drawable.s7_edge;
+                    break;
+                case 2:
+                    productImage[i] = R.drawable.macbook;
+                    break;
+                case 3:
+                    productImage[i] = R.drawable.tenis_nike;
+                    break;
+                default:
+                    productImage[i] = R.drawable.tenis_nike;
+                    break;
+            }
+        }
+        listViewProducts.setAdapter(new CustomAdapter(this, productTitle,productImage,productPrice,product));
+        dialog.dismiss();
     }
 }

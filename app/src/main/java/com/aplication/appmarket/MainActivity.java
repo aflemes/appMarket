@@ -27,6 +27,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import model.Product;
 import model.Upload;
@@ -41,14 +42,14 @@ public class MainActivity extends AppCompatActivity
     private TextView txtNavEmail;
     private TextView txtNavNome;
     //
-    public static int [] prgmImages={R.drawable.ic_quit,R.drawable.common_full_open_on_phone};
-    public static String [] prgmNameList={"Let Us C","c++"};
     private ListView listViewProducts;
     private Context context;
     //
-    private ArrayList<Upload> uploads;
+    private List<Upload> uploads;
     private ArrayList<Product> product;
     private ProgressDialog dialog;
+    //
+    private static final String DATABASE_PATH_UPLOADS = "images/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -189,6 +190,8 @@ public class MainActivity extends AppCompatActivity
                 String sellerToken;
                 int qtdeProduct = 0;
                 int lgPrincipal = 0;
+                int inStatus    = 0;
+                double price    = 0.0;
 
                 product = new ArrayList<Product>();
                 Product tmpProduct;
@@ -200,17 +203,20 @@ public class MainActivity extends AppCompatActivity
                     tmpProduct = new Product();
                     tmpProduct.setProductTitle((String) child.child("productTitle").getValue());
                     tmpProduct.setProductDescript((String) child.child("productDescript").getValue());
-                    tmpProduct.setProductPrice((Double) child.child("productPrice").getValue());
 
                     try{
+                        price       = Double.parseDouble(child.child("productPrice").getValue().toString());
                         qtdeProduct = Integer.parseInt(child.child("productQtde").getValue().toString());
                         lgPrincipal = Integer.parseInt(child.child("imgPrincipal").getValue().toString());
+                        inStatus    = Integer.parseInt(child.child("productStatus").getValue().toString());
                     }catch (Exception e){
                         e.printStackTrace();
                     }
 
+                    tmpProduct.setProductPrice(price);
                     tmpProduct.setProductQtde(qtdeProduct);
                     tmpProduct.setImgPrincipal(lgPrincipal);
+                    tmpProduct.setProductStatus(inStatus);
 
                     tmpProduct.setProductToken((String) child.child("productToken").getValue());
                     tmpProduct.setProductCategory((String) child.child("productCategory").getValue());
@@ -233,36 +239,23 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void loadImages(){
-        DatabaseReference  myRef = FirebaseDatabase.getInstance().getReference().child("images");
+        StorageReference myRef = FirebaseStorage.getInstance().getReference(DATABASE_PATH_UPLOADS);
         uploads = new ArrayList<>();
+        List<StorageReference> myListReferente = new ArrayList<>();
 
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                //iterating through all the values in database
-                String ProductToken = "";
+        for (int i = 0; i < product.size(); i++) {
+            //encontrei o anuncio
+            myListReferente.add(myRef.child(product.get(i).getProductToken()).child("image0"));
+        }
 
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    ProductToken = postSnapshot.getKey();
+        Upload upload;
 
-                    for (int i = 0; i < product.size(); i++) {
-                        //encontrei o anuncio
-                        if (ProductToken.equals(product.get(i).getProductToken())){
-                            Upload upload = postSnapshot.getValue(Upload.class);
-                            uploads.add(upload);
-                        }
-                    }
-                }
-            }
+        for (int i = 0; i < myListReferente.size(); i ++){
+            upload = new Upload("i",myListReferente.get(i).toString());
+            uploads.add(upload);
+        }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-
-
+        //loadListView(uploads);
     }
 
     private void loadListView(){
@@ -273,11 +266,27 @@ public class MainActivity extends AppCompatActivity
         for (int i=0 ; i < product.size();i++){
             productTitle[i] = product.get(i).getProductTitle().toString();
             productPrice[i] = product.get(i).getProductPrice();
-            productImage[i] = R.drawable.happykoala;
+
+            switch (i){
+                case 0:
+                    productImage[i] = R.drawable.happykoala;
+                    break;
+                case 1:
+                    productImage[i] = R.drawable.s7_edge;
+                    break;
+                case 2:
+                    productImage[i] = R.drawable.macbook;
+                    break;
+                case 3:
+                    productImage[i] = R.drawable.tenis_nike;
+                    break;
+                default:
+                    productImage[i] = R.drawable.tenis_nike;
+                    break;
+            }
         }
 
-
-        listViewProducts.setAdapter(new CustomAdapter(this, productTitle,productImage,productPrice));
+        listViewProducts.setAdapter(new CustomAdapter(this, productTitle,productImage,productPrice,product));
 
         dialog.dismiss();
     }

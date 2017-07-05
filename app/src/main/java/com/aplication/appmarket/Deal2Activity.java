@@ -19,6 +19,17 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Logger;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
 
 public class Deal2Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -37,6 +48,13 @@ public class Deal2Activity extends AppCompatActivity
     private String NameUser;
     private String EmailUser;
     private String TokenUser;
+    private String ProductTitle;
+    private String ProductDescript;
+    private String ProductQtde;
+    private String ProductCategoriy;
+    private String ProductPrice;
+    private String ProductStatus;
+    private String ProductToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +88,14 @@ public class Deal2Activity extends AppCompatActivity
                 questionaCompra();
             }
         });
+
+        Bundle extras = getIntent().getExtras();
+
+        if (extras != null) {
+            NameUser = extras.getString("Nome");
+            EmailUser = extras.getString("Email");
+            TokenUser = extras.getString("Token");
+        }
 
         initActivity();
     }
@@ -174,19 +200,17 @@ public class Deal2Activity extends AppCompatActivity
     }
 
     private void initActivity(){
-        FirstImage.setImageResource(R.drawable.sleepykoala);
-        SecondImage.setImageResource(R.drawable.koala);
-        ThirdImage.setImageResource(R.drawable.happykoala);
         //
         Bundle extras = getIntent().getExtras();
 
         if (extras != null){
-            String ProductTitle      = extras.getString("ProductTitle");
-            String ProductDescript   = extras.getString("ProductDescript");
-            String ProductQtde       = extras.getString("ProductQtde");
-            String ProductCategoriy  = extras.getString("ProductCategoriy");
-            String ProductPrice      = extras.getString("ProductPrice");
-            String ProductPaused     = extras.getString("ProductPaused");
+            ProductTitle      = extras.getString("ProductTitle");
+            ProductDescript   = extras.getString("ProductDescript");
+            ProductQtde       = extras.getString("ProductQtde");
+            ProductCategoriy  = extras.getString("ProductCategory");
+            ProductPrice      = extras.getString("ProductPrice");
+            ProductStatus     = extras.getString("ProductStatus");
+            ProductToken      = extras.getString("ProductToken");
 
             txtQtde     = (TextView)  findViewById(R.id.txtQtde);
             txtCategory = (TextView)  findViewById(R.id.txtCategoria);
@@ -199,12 +223,36 @@ public class Deal2Activity extends AppCompatActivity
             txtDescript.setText(txtDescript.getText().toString() + ProductDescript);
             txtPrice.setText(txtPrice.getText().toString() + ProductPrice);
 
-            if (Integer.parseInt(ProductPaused) == 1){
+            switch (ProductToken){
+                case "-Ko2kLW6Q1STxPr9xoqR":
+                    FirstImage.setImageResource(R.drawable.sleepykoala);
+                    SecondImage.setImageResource(R.drawable.koala);
+                    ThirdImage.setImageResource(R.drawable.happykoala);
+                    break;
+                case "-KoFLcVOmpb0oZqPw4d9":
+                    FirstImage.setImageResource(R.drawable.s7_edge);
+                    SecondImage.setImageResource(R.drawable.s7);
+                    break;
+                case "-KoFb-kG1dLeN2Z-SnYu":
+                    FirstImage.setImageResource(R.drawable.macbook);
+                    break;
+                default:
+                    FirstImage.setImageResource(R.drawable.tenis_nike);
+                    break;
+            }
+
+            int ProductStatusInt = 0;
+            try{
+                ProductStatusInt = Integer.parseInt(ProductStatus);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+            if (ProductStatusInt == 1){
                 btnBuy.setVisibility(View.INVISIBLE);
             }
             else
                 txtAnuncioStatus.setVisibility(View.INVISIBLE);
-
         }
     }
 
@@ -235,6 +283,19 @@ public class Deal2Activity extends AppCompatActivity
         alert.show();
     }
     private void setCompra(){
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        final DatabaseReference reference = firebaseDatabase.getReference();
+        HashMap<String, Object> result = new HashMap<>();
+        //venda feita com sucesso
+        result.put("productStatus", "1");
+        result.put("productBuyer ", EmailUser);
+
+        reference.child("product").child(ProductToken).updateChildren(result);
+
+        Toast.makeText(this,"Compra feita com sucsso",Toast.LENGTH_LONG).show();
+
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        openActivity(intent);
 
     }
 }

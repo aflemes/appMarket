@@ -53,6 +53,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private boolean userRegistred = false;
     private String userToken;
     private static boolean EnableGoogleCache = false;
+    public ProgressDialog progressDialogAut  = null;
 
     @Bind(R.id.input_email) EditText _emailText;
     @Bind(R.id.input_password) EditText _passwordText;
@@ -140,7 +141,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         } else {
             //If login fails
-            Toast.makeText(this, "Login Failed", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Login Falhou", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -191,10 +192,60 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         });
     }
 
+    private void searchUsersLogin(final String emailLogin, final String senha){
+        userRegistred = false;
+
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("users");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String email     = "";
+                String password  = "";
+                String name      = "";
+
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    email = (String) child.child("email").getValue();
+                    password = (String) child.child("password").getValue();
+
+                    if (email.compareTo(emailLogin) == 0){
+                        if (password.compareTo(senha) == 0) {
+                            userToken = child.getKey();
+                            userRegistred = true;
+
+                            name = (String) child.child("name").getValue();
+
+                            openMarketByLogin(name, emailLogin);
+                            break;
+                        }
+                    }
+                }
+
+                if (!(userRegistred)){
+                    onLoginFailed();
+                    progressDialogAut.dismiss();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     private void openMarket(GoogleSignInAccount account){
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         intent.putExtra("Nome" , account.getDisplayName());
         intent.putExtra("Email", account.getEmail());
+        intent.putExtra("Token", userToken.toString());
+
+        startActivity(intent);
+    }
+
+    private void openMarketByLogin(String name, String email){
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.putExtra("Nome" , name);
+        intent.putExtra("Email", email);
         intent.putExtra("Token", userToken.toString());
 
         startActivity(intent);
@@ -250,26 +301,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         _loginButton.setEnabled(false);
 
-        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
-                R.style.AppTheme_Dark_Dialog);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Authenticating...");
-        progressDialog.show();
+        progressDialogAut = new ProgressDialog(LoginActivity.this,R.style.AppTheme_Dark_Dialog);
+        progressDialogAut.setIndeterminate(true);
+        progressDialogAut.setMessage("Autenticando...");
+        progressDialogAut.show();
 
-        /*String email = _emailText.getText().toString();
-        String password = _passwordText.getText().toString();*/
+        String email = _emailText.getText().toString();
+        String password = _passwordText.getText().toString();
 
-        // TODO: Implement your own authentication logic here.
+        searchUsersLogin(email,password);
 
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        // On complete call either onLoginSuccess or onLoginFailed
-                        onLoginSuccess();
-                        // onLoginFailed();
-                        progressDialog.dismiss();
-                    }
-                }, 3000);
+        //progressDialog.dismiss();
     }
 
     @Override
@@ -284,7 +326,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void onLoginFailed() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Login Falhou", Toast.LENGTH_LONG).show();
 
         _loginButton.setEnabled(true);
     }
@@ -296,14 +338,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String password = _passwordText.getText().toString();
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            _emailText.setError("enter a valid email address");
+            _emailText.setError("insira um email válido");
             valid = false;
         } else {
             _emailText.setError(null);
         }
 
         if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
-            _passwordText.setError("between 4 and 10 alphanumeric characters");
+            _passwordText.setError("senha deve ser entre 4 e 10 caractéres");
             valid = false;
         } else {
             _passwordText.setError(null);

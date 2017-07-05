@@ -12,8 +12,16 @@ public class Product {
     private String productDescript;
     private String productCategory;
     private int    productQtde;
+    private int    productStatus;
     private double productPrice;
 
+    public int getProductStatus() {
+        return productStatus;
+    }
+
+    public void setProductStatus(int productStatus) {
+        this.productStatus = productStatus;
+    }
 
     public String getSellerToken() {
         return sellerToken;

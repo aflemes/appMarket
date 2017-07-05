@@ -8,4 +8,20 @@
     tools:context="com.aplication.appmarket.ShoppingActivity"
     tools:showIn="@layout/app_bar_shopping">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Suas compras"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"/>
+
+
+    <ListView
+        android:id="@+id/listViewProducts"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="60dp"
+        android:layout_below="@+id/linearFiltro">
+    </ListView>
 </RelativeLayout>
